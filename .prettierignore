@@ -1,0 +1,22 @@
+# Directories
+node_modules
+.github
+.changeset
+.turbo
+**/dist
+**/coverage
+**/public
+**/.vscode
+
+# Files
+# Ignore CHANGELOG.md files to avoid issues with automated release job
+CHANGELOG.md
+CONTRIBUTING.md
+README.md
+LICENSE
+pnpm-lock.yaml
+pnpm-workspace.yaml
+*.tsbuildinfo
+*.gitignore
+*.log
+*.lock

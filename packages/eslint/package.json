@@ -1,0 +1,31 @@
+{
+	"name": "@ernxst/eslint",
+	"version": "0.0.1",
+	"private": true,
+	"type": "module",
+	"exports": {
+		"./eslintrc.cjs": "./.eslintrc.cjs",
+		"./.eslintrc.airbnb.cjs": "./.eslintrc.airbnb.cjs",
+		"./.eslintrc.sonar.cjs": "./.eslintrc.sonar.cjs",
+		"./.eslintrc.ts.cjs": "./.eslintrc.ts.cjs",
+		"./.eslintrc.unicorn.cjs": "./.eslintrc.unicorn.cjs"
+	},
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "5.33.1",
+		"@typescript-eslint/parser": "5.33.1",
+		"eslint": "8.22.0",
+		"eslint-config-airbnb-base": "15.0.0",
+		"eslint-config-prettier": "8.5.0",
+		"eslint-import-resolver-typescript": "3.4.2",
+		"eslint-plugin-import": "2.26.0",
+		"eslint-plugin-prettier": "4.2.1",
+		"eslint-plugin-sonarjs": "0.15.0",
+		"eslint-plugin-unicorn": "43.0.2",
+		"eslint-plugin-unused-imports": "2.0.0",
+		"typescript": "4.7.4"
+	},
+	"peerDependencies": {
+		"eslint": "*",
+		"typescript": "*"
+	}
+}

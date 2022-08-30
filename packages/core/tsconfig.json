@@ -1,0 +1,12 @@
+{
+	"extends": "@ernxst/tsconfig/tsconfig.base.json",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["src/*"],
+			"~/*": ["test/*"]
+		}
+	},
+	"include": ["src", "test", "vite.config.ts", "package.json", "tsconfig.json"],
+	"exclude": ["node_modules", "dist"]
+}

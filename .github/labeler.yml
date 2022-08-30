@@ -1,0 +1,10 @@
+# See https://github.com/actions/labeler
+
+example:
+- examples/**/*
+
+'🚨 action':
+- .github/workflows/**
+
+test:
+- packages/**/*.test.js

@@ -1,0 +1,52 @@
+name: "📥 Install dependencies"
+description: "Setup node, install pnpm and dependencies"
+
+inputs:
+  node-version:
+    description: "Node.js version"
+    required: false
+    default: "18"
+  pnpm-version:
+    description: "pnpm version"
+    required: false
+    default: "7.5.2"
+  node-env:
+    description: "Node environment"
+    required: false
+    default: "development"
+
+runs:
+  using: "composite"
+  steps:
+    - name: 💿 Turbo Cache pnpm modules
+      id: turbo-cache
+      uses: actions/cache@v3
+      if: ${{ !env.ACT }}
+      with:
+        path: node_modules/.cache/turbo
+        key: turbo-${{ github.job }}-${{ github.ref_name }}-${{ github.sha }}
+        restore-keys: |
+          turbo-${{ github.job }}-${{ github.ref_name }}-
+
+    - name: 🛠 Install pnpm
+      uses: pnpm/action-setup@v2.2.1
+      with:
+        version: ${{ inputs.pnpm-version }}
+
+    - name: 📂 Set pnpm cache directory
+      run: pnpm config set store-dir node_modules/.cache/turbo
+      shell: bash
+
+    - name: ⎔ Setup node
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ inputs.node-version }}
+        # Do not cache when running action locally (caching unsupported by act)
+        cache: ${{ !env.ACT && 'pnpm' || '' }}
+        cache-dependency-path: pnpm-lock.yaml
+
+    - name: 📥 Install dependencies
+      env:
+        NODE_ENV: ${{ inputs.node-env }}
+      shell: bash
+      run: pnpm install

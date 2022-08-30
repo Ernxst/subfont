@@ -1,0 +1,115 @@
+{
+	"name": "@ernxst/subfont",
+	"version": "0.0.1",
+	"description": "A plugin to purge unused glyphs from your font files to minimise bundle size",
+	"author": "Ernest Nkansah-Badu",
+	"license": "MIT",
+	"homepage": "https://github.com/Ernxst/subfont",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Ernxst/subfont.git",
+		"directory": "packages/core"
+	},
+	"type": "module",
+	"main": "dist/index.cjs",
+	"module": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"iife": "dist/index.global.js",
+	"exports": {
+		"./astro": {
+			"types": "./dist/astro/index.d.ts",
+			"import": "./dist/astro/index.js",
+			"require": "./dist/astro/index.cjs"
+		},
+		"./esbuild": {
+			"types": "./dist/esbuild/index.d.ts",
+			"import": "./dist/esbuild/index.js",
+			"require": "./dist/esbuild/index.cjs"
+		},
+		"./rollup": {
+			"types": "./dist/rollup/index.d.ts",
+			"import": "./dist/rollup/index.js",
+			"require": "./dist/rollup/index.cjs"
+		},
+		"./vite": {
+			"types": "./dist/vite/index.d.ts",
+			"import": "./dist/vite/index.js",
+			"require": "./dist/vite/index.cjs"
+		},
+		"./webpack": {
+			"types": "./dist/webpack/index.d.ts",
+			"import": "./dist/webpack/index.js",
+			"require": "./dist/webpack/index.cjs"
+		}
+	},
+	"typesVersions": {
+		"*": {
+			"astro": [
+				"./dist/astro/index.d.ts"
+			],
+			"esbuild": [
+				"./dist/esbuild/index.d.ts"
+			],
+			"rollup": [
+				"./dist/rollup/index.d.ts"
+			],
+			"webpack": [
+				"./dist/webpack/index.d.ts"
+			],
+			"vite": [
+				"./dist/vite/index.d.ts"
+			]
+		}
+	},
+	"files": [
+		"dist",
+		"README.md"
+	],
+	"engines": {
+		"node": "^14.15.0 || >=16.0.0",
+		"pnpm": ">=7.5.0"
+	},
+	"packageManager": "pnpm@7.5.2",
+	"scripts": {
+		"build": "tsup --clean",
+		"build:dts": "tsup --dtsOnly",
+		"--------------------------------------------------------------------------------": "",
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix",
+		"---------------------------------------------------------------------------------": "",
+		"test": "vitest run"
+	},
+	"keywords": [
+		"TODO",
+		"module",
+		"keywords"
+	],
+	"devDependencies": {
+		"@ernxst/eslint": "workspace:*",
+		"@ernxst/tsconfig": "workspace:*",
+		"@types/node": "^18.7.14",
+		"@vitest/coverage-c8": "^0.22.1",
+		"eslint": "8.22.0",
+		"globby": "13.1.2",
+		"tsup": "6.2.2",
+		"vite": "3.0.9",
+		"vite-tsconfig-paths": "3.4.1",
+		"vitest": "0.22.1"
+	},
+	"dependencies": {
+		"astro": "^1.0.6",
+		"esbuild": "^0.15.5",
+		"glyphhanger": "^5.0.0",
+		"rollup": "^2.78.1",
+		"vite": "^3.0.9",
+		"webpack": "^5.74.0"
+	},
+	"peerDependencies": {
+		"astro": "*",
+		"esbuild": "*",
+		"glyphhanger": "*",
+		"rollup": "*",
+		"vite": "*",
+		"webpack": "*"
+	}
+}

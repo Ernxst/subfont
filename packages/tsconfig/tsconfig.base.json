@@ -1,0 +1,30 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"display": "Default",
+	"compilerOptions": {
+		"allowUnreachableCode": false,
+		"allowUnusedLabels": false,
+		"declaration": true,
+		"declarationMap": true,
+		"esModuleInterop": true,
+		"strict": true,
+		"moduleResolution": "node",
+		"skipLibCheck": true,
+		"noImplicitReturns": true,
+		"resolveJsonModule": true,
+		"sourceMap": true,
+		"forceConsistentCasingInFileNames": true,
+		"strictNullChecks": true,
+		"noImplicitAny": true,
+		"target": "esnext",
+		"module": "esnext",
+		"baseUrl": ".",
+		"allowSyntheticDefaultImports": true,
+		"isolatedModules": true,
+		"jsx": "preserve",
+		"lib": ["esnext", "dom", "dom.iterable"],
+		"noFallthroughCasesInSwitch": true,
+		"noUnusedParameters": true,
+		"noUnusedLocals": true
+	}
+}

@@ -1,0 +1,118 @@
+name: 🚀 CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    paths-ignore:
+      - '.vscode/**'
+
+# Automatically cancel in-progress actions on the same branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request_target' && github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+  TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+
+jobs:
+  lint:
+    name: ⬣ ESLint
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: 📤 Install dependencies
+        uses: ./.github/actions/deps
+
+      - name: 🔬 Lint
+        run: pnpm run lint
+
+  typecheck:
+    name: ʦ TypeScript
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: 📤 Install dependencies
+        uses: ./.github/actions/deps
+
+      - name: 🔎 Type check
+        run: pnpm run typecheck
+
+  # Build installs all devDependencies and runs our full build pipeline.
+  # We upload all `dist/` artifacts to GitHub, which can be shared by all dependent jobs.
+  build:
+    name: 🛠 Build Packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: 📤 Install dependencies
+        uses: ./.github/actions/deps
+
+      - name: 🧱 Build Packages
+        run: pnpm run build
+
+      - name: ⬆️ Upload Package Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifacts
+          path: |
+            packages/*/dist/**
+            packages/*/*/dist/**
+          if-no-files-found: error
+
+  test:
+    name: "🧪 Test: ${{ matrix.os }} (node@${{ matrix.node_version }})"
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node_version: [14, 16, 18]
+        include:
+          - os: windows-latest
+            node_version: 16
+          - os: macos-latest
+            node_version: 16
+      fail-fast: false
+    needs: [build]
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: ⬇️ Download Build Artifacts
+        uses: actions/download-artifact@v3
+
+      - name: 💿 Extract Artifacts
+        run: ./.github/extract-artifacts.sh
+
+      - name: 📤 Install dependencies
+        uses: ./.github/actions/deps
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: 📤 Install nyc
+        run: pnpm install -g nyc
+
+      - name: 🧪 Run Tests
+        run: pnpm run test
+
+      - name: 📄 Report
+        if: matrix.node_version >= 16
+        run: |
+          pnpm run aggregate
+          ls -a
+          nyc report --reporter=text-lcov > coverage.lcov
+          bash <(curl -s https://codecov.io/bash)
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

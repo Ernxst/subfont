@@ -1,0 +1,44 @@
+name: 📤 Release
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+  TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+  FORCE_COLOR: true
+  CI: true
+
+jobs:
+  release:
+    name: 🌍 Release
+    if: ${{ github.repository_owner == 'Ernxst' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+        with:
+          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
+          fetch-depth: 0
+
+      - name: 📤 Install dependencies
+        uses: ./.github/actions/deps
+
+      - name: 🛠 Build Packages
+        run: pnpm run build
+
+      - name: 🪢 Create Release Pull Request
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          version: pnpm run version
+          publish: pnpm exec changeset publish
+          commit: "chore(ci): release"
+          title: "chore(ci): release"
+        env:
+          # Needs access to push to main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Needs access to publish to npm
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

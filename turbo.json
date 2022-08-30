@@ -1,0 +1,38 @@
+{
+	"$schema": "https://turborepo.org/schema.json",
+	"globalDependencies": ["$NODE_ENV", "tsconfig.json"],
+	"pipeline": {
+		"build": {
+			"dependsOn": ["^build"],
+			"outputs": ["dist/**"]
+		},
+		"build:dts": {
+			"dependsOn": ["^build:dts"],
+			"outputs": ["dist/**"]
+		},
+		"dev": {
+			"cache": false
+		},
+		"preview": {
+			"cache": false
+		},
+		"typecheck": {
+			"dependsOn": ["^build:dts"],
+			"outputs": []
+		},
+		"lint": {
+			"dependsOn": ["^build:dts"],
+			"outputs": []
+		},
+		"lint:fix": {
+			"dependsOn": ["^build:dts"],
+			"outputs": []
+		},
+		"test": {
+			"outputs": ["coverage/**"]
+		},
+		"test:e2e": {
+			"outputs": []
+		}
+	}
+}

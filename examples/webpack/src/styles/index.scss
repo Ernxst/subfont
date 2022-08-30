@@ -1,0 +1,33 @@
+@font-face {
+	font-family: "Sintony";
+	src: url("../fonts/sintony-v11-latin-regular.eot?#iefix")
+			format("embedded-opentype"),
+		url("../fonts/sintony-v11-latin-regular.woff2") format("woff2"),
+		url("../fonts/sintony-v11-latin-regular.woff") format("woff"),
+		url("../fonts/sintony-v11-latin-regular.ttf") format("truetype"),
+		url("../fonts/sintony-v11-latin-regular.svg#Sintony") format("svg");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Sintony";
+	src: url("../fonts/sintony-v11-latin-700.eot?#iefix")
+			format("embedded-opentype"),
+		url("../fonts/sintony-v11-latin-700.woff2") format("woff2"),
+		url("../fonts/sintony-v11-latin-700.woff") format("woff"),
+		url("../fonts/sintony-v11-latin-700.ttf") format("truetype"),
+		url("../fonts/sintony-v11-latin-700.svg#Sintony") format("svg");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+
+$body-color: slateblue;
+
+body {
+  color: $body-color;
+  font-family: "Sintony" sans-serif;
+}

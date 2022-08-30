@@ -1,0 +1,30 @@
+{
+  "editor.tabSize": 2,
+  "cSpell.words": [
+    "commitlint",
+    "esbuild",
+    "globby",
+    "glyphhanger",
+    "pnpm",
+    "subfont",
+    "tsup",
+    "typecheck",
+    "Vite",
+    "vitejs",
+    "vitest"
+  ],
+  "editor.formatOnSave": false,
+  "files.associations": {
+    "**/*.env.*": "properties"
+  },
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "markdownlint.config": {
+    "no-inline-html": false
+  },
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "html",
+    "typescriptreact"
+  ]
+}
