@@ -26,7 +26,7 @@ export async function subsetFonts(options: SubsetFontOptions) {
 	}
 
 	const { outDir, log = true } = options;
-	const filesGlob = `${outDir}/**/*.html`;
+	const filesGlob = `${outDir}${outDir.endsWith("/") ? "" : "/"}/index.html`;
 
 	// Run in parallel
 	await Promise.all(
@@ -73,7 +73,7 @@ function callGlyphhanger(
 			"--whitelist=U+00A0",
 		],
 		{
-			shell: true,
+			stdio: `inherit`,
 		}
 	);
 }
