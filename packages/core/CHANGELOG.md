@@ -1,5 +1,11 @@
 # @ernxst/subfont
 
+## 0.1.2
+
+### Patch Changes
+
+- [`827e27e`](https://github.com/Ernxst/subfont/commit/827e27e690ce7e7892dff269477df4dc07781d3e) Thanks [@Ernxst](https://github.com/Ernxst)! - use `path.join` to build paths; add log statements
+
 ## 0.1.1
 
 ### Patch Changes
