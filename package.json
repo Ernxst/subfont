@@ -16,6 +16,7 @@
 		"preview": "turbo run preview --parallel",
 		"-------------------------------------------------------------------------------": "",
 		"build": "turbo run build --filter=!@example/*",
+		"build:astro": "turbo run build --filter=@example/astro...",
 		"build:dts": "turbo run build:dts",
 		"----------------------------------------------------------------------------------": "",
 		"lint": "turbo run lint --filter=!@example/*",
