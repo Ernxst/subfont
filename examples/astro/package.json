@@ -13,7 +13,7 @@
 		"@astrojs/mdx": "^0.10.0",
 		"@astrojs/rss": "^1.0.0",
 		"@astrojs/sitemap": "^1.0.0",
-		"@ernxst/subfont": "workspace:*",
+		"@ernxst/subfont": "0.1.1",
 		"astro": "^1.0.9",
 		"rollup": "^2.78.1"
 	}
