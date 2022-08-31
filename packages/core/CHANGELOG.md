@@ -1,5 +1,11 @@
 # @ernxst/subfont
 
+## 0.1.3
+
+### Patch Changes
+
+- [`8997185`](https://github.com/Ernxst/subfont/commit/899718597be5adea7f378a7b84850ae1f5e2a3cb) Thanks [@Ernxst](https://github.com/Ernxst)! - add cli args to `glyphhanger`
+
 ## 0.1.2
 
 ### Patch Changes
