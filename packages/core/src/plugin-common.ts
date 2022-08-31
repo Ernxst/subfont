@@ -29,7 +29,7 @@ export async function subsetFonts(options: SubsetFontOptions) {
 		await fs.promises.mkdir(TMP_DIR_NAME);
 	}
 
-	const filesGlob = path.join(outDir, "index.html");
+	const filesGlob = path.join(outDir, "**", "*.html");
 
 	if (log)
 		console.log(
