@@ -102,6 +102,12 @@ function callGlyphhanger(
 			"--jsdom",
 			// See https://github.com/zachleat/glyphhanger/issues/2#issuecomment-848026779
 			"--whitelist=U+00A0",
+			// Show used characters as strings rather than utf codes
+			"--string",
+			// Maximum number of URLs gathered from the spider (0 to ignore)
+			"spider-limit=0",
+			// Do not spend more than 30s navigating a single URL
+			"--timeout=30",
 		],
 		{ shell: true, stdio: "inherit" }
 	);
