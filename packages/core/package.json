@@ -1,6 +1,6 @@
 {
 	"name": "@ernxst/subfont",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "A plugin to purge unused glyphs from your font files to minimise bundle size",
 	"author": "Ernest Nkansah-Badu",
 	"license": "MIT",
