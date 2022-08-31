@@ -49,4 +49,4 @@ runs:
       env:
         NODE_ENV: ${{ inputs.node-env }}
       shell: bash
-      run: pnpm install
+      run: pnpm install --filter=!./examples
