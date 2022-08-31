@@ -29,6 +29,9 @@ jobs:
       - name: 🛠 Build Packages
         run: pnpm run build
 
+      - name: 📄 Copy README
+        run: cp README.md packages/core
+
       - name: 🪢 Create Release Pull Request
         id: changesets
         uses: changesets/action@v1
