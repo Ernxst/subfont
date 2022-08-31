@@ -1,5 +1,11 @@
 # @ernxst/subfont
 
+## 0.1.4
+
+### Patch Changes
+
+- [`c203857`](https://github.com/Ernxst/subfont/commit/c203857c886b05c842a7ce696f15c3d7d6df39ee) Thanks [@Ernxst](https://github.com/Ernxst)! - use glob pattern to find `.html` files
+
 ## 0.1.3
 
 ### Patch Changes
