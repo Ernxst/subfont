@@ -20,7 +20,8 @@ export async function replaceFontFiles(
 	format: FontFormat,
 	log: boolean
 ) {
-	const processedFonts = await globby(`${TMP_DIR_NAME}/**/*.${format}`);
+	const dir = path.join(TMP_DIR_NAME, "**", `*.${format}`);
+	const processedFonts = await globby(dir);
 
 	for (const tempPath of processedFonts) {
 		const relativePath = resolveFontPath(tempPath);
@@ -34,6 +35,10 @@ export async function replaceFontFiles(
 			await fs.promises.cp(tempPath, originalPath);
 		}
 	}
+}
+
+export function toRelativePath(filePath: string) {
+	return filePath.replace(process.cwd(), "");
 }
 
 function resolveFontPath(tempPath: string) {
@@ -52,7 +57,7 @@ async function logSizeSaving(newFile: string, originalFile: string) {
 	const percentageDiff = (100 * savings) / ((sizeBefore + sizeAfter) / 2);
 
 	console.log(
-		`- Reduced "${originalFile.replace(process.cwd(), "")}" by ${round(
+		`\n- Reduced "${toRelativePath(originalFile)}" by ${round(
 			savings
 		)}kb (${round(percentageDiff)}%)!\n    - (before: ${round(
 			sizeBefore
